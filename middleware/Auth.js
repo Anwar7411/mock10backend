@@ -3,7 +3,8 @@ require('dotenv').config();
 const Auth=(req,res,next)=>{
     const token=req.headers?.authorization?.split(" ")[1];
     if(token){
-        const decoded=jwt.verify(token,`login`)
+        const decoded=jwt.verify(token,`login`);
+        console.log("err",decoded)
         if(decoded){
             req.body.userDetails=decoded.userDetails;
             next();
@@ -11,7 +12,7 @@ const Auth=(req,res,next)=>{
             res.send("Something went wrong please try again later")
         }
     }else{
-        res.send("Please Login")
+        res.send("Please Login");
     }
 }
 

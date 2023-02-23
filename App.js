@@ -8,6 +8,8 @@ require('dotenv').config();
 const { connection } = require('./server');
 const { UserModel } = require('./models/User.model');
 const {FlightRoute}=require('./Routes/Flight.route');
+const {BookingRoute}=require('./Routes/Booking.route');
+const {DashboardRoute}=require('./Routes/Dashboard.route');
 const {Auth}=require("./middleware/Auth")
 
 const PORT=process.env.PORT || 8080
@@ -62,11 +64,10 @@ app.post("/login",async (req,res)=>{
     }
    
 })
-
 app.use("/flights",FlightRoute)
-
-//app.use(Auth)
-
+app.use(Auth)
+app.use("/booking",BookingRoute)
+app.use("/dashboard",DashboardRoute)
 
 
 
