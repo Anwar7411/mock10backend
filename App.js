@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const { connection } = require('./server');
 const { UserModel } = require('./models/User.model');
-const {PhoneRouter}=require('./routes/PhonesRoute.route');
+const {FlightRoute}=require('./Routes/Flight.route');
 const {Auth}=require("./middleware/Auth")
 
 const PORT=process.env.PORT || 8080
@@ -49,8 +49,8 @@ app.post("/login",async (req,res)=>{
                     console.log("Error in bcrypt",err)
                 }
                 if(result){
-                    const token = jwt.sign({ userDetails:payload  }, `${process.env.secret_key}`);
-                    res.send({msg:"Login Successfull",token:token,userDetails:usercheck})
+                    const token = jwt.sign({ userDetails:usercheck  }, `login`);
+                    res.send({msg:"Login Successfull",token:token})
                 }
              })}else{
                 res.send("Something went wrong please try again later!");
@@ -63,12 +63,10 @@ app.post("/login",async (req,res)=>{
    
 })
 
-app.use("/phones",PhoneRouter)
-app.use("/tv",TvRouter)
-app.use("/laptop",LaptopRouter)
-app.use("/search",Search)
-app.use(Auth)
-app.use("/strip",StripRouter)
+app.use("/flights",FlightRoute)
+
+//app.use(Auth)
+
 
 
 

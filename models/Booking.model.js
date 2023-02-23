@@ -5,6 +5,6 @@ const BookingSchema=({
     flight : Object
 })
 
-const   BookingModel=mongoose.model("Orders",BookingSchema)
+const   BookingModel=mongoose.model("booking",BookingSchema)
 
 module.exports={BookingModel}

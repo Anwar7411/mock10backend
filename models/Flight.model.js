@@ -5,12 +5,12 @@ const FlightSchema=({
     flightNo: String,
     departure: String,
     arrival: String,
-    departureTime: Date,
-    arrivalTime: Date,
+    departureTime: String,
+    arrivalTime: String,
     seats: Number,
     price: Number
 })
 
-const   FlightModel=mongoose.model("Orders",FlightSchema)
+const   FlightModel=mongoose.model("flights",FlightSchema)
 
 module.exports={FlightModel}
